@@ -2,14 +2,10 @@ class Solution {
     public int rangeBitwiseAnd(int left, int right) {
         //// Compare only left with right ////
         // Find the largest common prefix between the two ints in bin
-        String lbinStr = Integer.toBinaryString(left);
-        String lbin = String.format("%32s", lbinStr).replace(' ', '0');
-        String rbinStr = Integer.toBinaryString(right);
-        String rbin = String.format("%32s", rbinStr).replace(' ', '0');
+        char[] larr = (String.format("%32s", Integer.toBinaryString(left)).replace(' ', '0')).toCharArray();
+        char[] rarr = (String.format("%32s", Integer.toBinaryString(right)).replace(' ', '0')).toCharArray();
         StringBuilder sb = new StringBuilder();
         int i = 0;
-        char[] larr = lbin.toCharArray();
-        char[] rarr = rbin.toCharArray();
         for (; i < 32; i++) {
             if (larr[i] != rarr[i]){
                 break;
