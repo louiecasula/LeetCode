@@ -12,16 +12,15 @@ class Solution {
     public ListNode removeNthFromEnd(ListNode head, int n) {
         // Use two pointers separated by a length of n
         ListNode i = head, j = head;
-        int count = 0;
         while (i.next != null) {
-            if (count >= n) {
+            if (n <= 0) {
                 j = j.next;
             }
-            count++;
+            n--;
             i = i.next;
         }
         // For deletion
-        if (j == head && count != n) { return head.next; }
+        if (j == head && n > 0) { return head.next; }
         if (j.next != null) { j.next = j.next.next; }
         return head;
     }
