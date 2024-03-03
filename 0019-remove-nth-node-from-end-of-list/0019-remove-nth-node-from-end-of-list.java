@@ -13,14 +13,12 @@ class Solution {
         // Use two pointers separated by a length of n
         ListNode i = head, j = head;
         int count = 0;
-        System.out.println("j: " + j.val + ", i: " + i.val);
         while (i.next != null) {
             if (count >= n) {
                 j = j.next;
             }
             count++;
             i = i.next;
-            System.out.println("j: " + j.val + ", i: " + i.val);
         }
         // For deletion
         if (j == head && count != n) { return head.next; }
