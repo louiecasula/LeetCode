@@ -5,7 +5,6 @@ class Solution:
         score = 0
         # While loop
         while True:
-            print("score: ", score)
             # If the cheapest token < power, face it up
             if tokens and tokens[0] <= power:
                 power -= tokens[0]
