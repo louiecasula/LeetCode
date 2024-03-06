@@ -6,18 +6,17 @@
 
 class Solution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
+        ## Floyd's Cycle Algorithm ##
         # Edgecase
         if not head:
             return False
         # Iterate
-        arch = []
-        curr = head
-        while curr.next:
-            # If map contains node, return false
-            if curr in arch:
-                return True
-            # Save each node
-            arch.append(curr)
-            curr = curr.next
-        # If next node == null, return true
-        return False
+        slow = head
+        fast = head.next
+        while True:
+            if not fast or not fast.next:
+                return False
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast:
+                return True        
