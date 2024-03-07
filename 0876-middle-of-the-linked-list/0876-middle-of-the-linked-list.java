@@ -13,6 +13,11 @@ class Solution {
         ListNode a = head, b = head;
         int len = 1;
         while (true) {
+            if (a.next != null && a.next.next != null && a.next.next.next != null && a.next.next.next.next != null) {
+                a = a.next.next.next.next;
+                len += 4;
+                continue;
+            }
             if (a.next != null && a.next.next != null && a.next.next.next != null) {
                 a = a.next.next.next;
                 len += 3;
