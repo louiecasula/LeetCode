@@ -13,6 +13,12 @@ class Solution {
         ListNode a = head, b = head;
         int len = 1;
         while (true) {
+            System.out.println(a.val);
+            if (a.next != null && a.next.next != null && a.next.next.next != null && a.next.next.next.next != null && a.next.next.next.next.next != null) {
+                a = a.next.next.next.next.next;
+                len += 5;
+                continue;
+            }
             if (a.next != null && a.next.next != null && a.next.next.next != null && a.next.next.next.next != null) {
                 a = a.next.next.next.next;
                 len += 4;
