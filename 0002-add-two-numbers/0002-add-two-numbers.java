@@ -8,36 +8,36 @@
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
-import java.math.BigInteger;
-
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         // Add each val * increasing factor to a sum for each linked list
-        BigInteger i1 = BigInteger.ZERO;
-        BigInteger i2 = BigInteger.ZERO;
-        BigInteger fact = BigInteger.ONE;
-        while (l1 != null || l2 != null) {
-            if (l1 != null) {
-                i1 = i1.add(fact.multiply(BigInteger.valueOf(l1.val)));
-                l1 = l1.next;
-            }
-            if (l2 != null) {
-                i2 = i2.add(fact.multiply(BigInteger.valueOf(l2.val)));
-                l2 = l2.next;
-            }
-            fact = fact.multiply(BigInteger.TEN);
-        }
-        // Add each ll num
-        BigInteger sum = i1.add(i2);
-        System.out.println(i1 + " + " + i2 + " = " + sum);
-        // Save each digit as a new node and return the first node
-        ListNode head = new ListNode((sum.mod(BigInteger.TEN)).intValue());
+        boolean carry = (l1.val + l2.val) > 9;
+        ListNode head = new ListNode((l1.val + l2.val) % 10);
         ListNode curr = head;
-        sum = sum.divide(BigInteger.TEN);
-        while (sum.compareTo(BigInteger.ONE) >= 0) {
-            curr.next = new ListNode((sum.mod(BigInteger.TEN)).intValue());
+        l1 = l1.next;
+        l2 = l2.next;
+        while ((l1 != null || l2 != null) || carry) {
+            curr.next = new ListNode(0);
             curr = curr.next;
-            sum = sum.divide(BigInteger.TEN);
+            if (carry) {
+                curr.val += 1;
+                carry = false;
+            }
+            if (l1 == null && l2 != null) {
+                curr.val += l2.val;
+            }
+            if (l1 != null && l2 == null) {
+                curr.val += l1.val;
+            }
+            if (l1 != null && l2 != null) {
+                curr.val += l1.val + l2.val;
+            }
+            if (curr.val > 9) {
+                curr.val = curr.val % 10;
+                carry = true;
+            }
+            if (l1 != null) { l1 = l1.next; }
+            if (l2 != null) { l2 = l2.next; }
         }
         return head;
     }
