@@ -22,9 +22,6 @@ class Solution {
             map.put(prefixSum, head);
             head = head.next;
         }
-        for (Integer key: map.keySet()) {
-            System.out.printf("key: %d, val: %d\n", key, map.get(key).val);
-        }
         // Go through linked list again, making the next node equal to the map's value of the sum
         head = dummy;
         prefixSum = 0;
