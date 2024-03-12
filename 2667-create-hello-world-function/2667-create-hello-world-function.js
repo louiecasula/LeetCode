@@ -1,12 +1,7 @@
 /**
  * @return {Function}
  */
-var createHelloWorld = function() {
-    
-    return function(...args) {
-        return "Hello World";
-    }
-};
+function createHelloWorld() { return function() { return "Hello World"; }};
 
 /**
  * const f = createHelloWorld();
