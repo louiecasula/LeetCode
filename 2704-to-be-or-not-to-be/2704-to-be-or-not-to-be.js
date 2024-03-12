@@ -2,22 +2,16 @@
  * @param {string} val
  * @return {Object}
  */
-var expect = function(val) {
+const expect = (val) => {
     return {
-        toBe(comp) {
-            if (val === comp) {
-                return true;
-            } else {
-                throw new Error("Not Equal");
-            }
+        toBe: (comp) => {
+            if (val === comp) { return true; }
+            throw new Error("Not Equal");
         },
 
-        notToBe(comp) {
-            if (val !== comp) {
-                return true;
-            } else {
-                throw new Error("Equal");
-            }
+        notToBe: (comp) => {
+            if (val !== comp) { return true; }
+            throw new Error("Equal");
         },
     }
 };
