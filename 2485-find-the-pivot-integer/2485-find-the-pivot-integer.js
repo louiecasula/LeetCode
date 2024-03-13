@@ -7,11 +7,11 @@ var pivotInteger = function(n) {
     let pref_sum = 0;
     let total = n * (n + 1) / 2;
     // Iterate from 1 -> n
-    for (let i = 0; i < n; i++) {
+    for (let i = 1; i <= n; i++) {
         // If sum 1 -> i == sum i -> n, return i
-        pref_sum += i + 1;
-        if (pref_sum === total - pref_sum + i + 1) {
-            return i + 1;
+        pref_sum += i;
+        if (pref_sum === total - pref_sum + i) {
+            return i;
         }
     }
     // Return -1
