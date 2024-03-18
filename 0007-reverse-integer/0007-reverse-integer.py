@@ -5,14 +5,12 @@ class Solution:
         if x < 0:
             neg = True
             x *= -1
-        # Turn number into string, reverse it
-        x = list(reversed(list(str(x))))
+        # Turn number into string, reverse it, back to int
+        x = int(str(x)[::-1])
         # If it was negative, replace sign
         if neg:
-            x.insert(0, "-")
-        # Convert back to number
-        x = int(''.join(x))
+            x *= -1
         # If x is outside of 32-bit int range, return 0. Else, return x
-        if -2147483648 <= x and x <= 2147483647:
+        if -2 ** 31 <= x and x <= 2 ** 31:
             return x
         return 0
