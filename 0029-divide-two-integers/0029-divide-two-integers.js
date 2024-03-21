@@ -6,6 +6,8 @@
 var divide = function(dividend, divisor) {
     if (dividend == (2**31 * -1) && divisor == -1) { return 2**31 -1; }
     let pos = (dividend > 0) == (divisor > 0);
+    if (divisor == 1) { return dividend; }
+    if (divisor == -1) { return dividend * divisor; }
     let quotient = 0;
     dividend = Math.abs(dividend), divisor = Math.abs(divisor);
     while (dividend - divisor >= 0) {
