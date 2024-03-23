@@ -10,18 +10,29 @@
  * @return {void} Do not return anything, modify head in-place instead.
  */
 var reorderList = function(head) {
-    // Iterate through ll, save each node val to an arr
-    let dummy = head;
-    let arr = [];
-    while (dummy) {
-        arr.push(dummy.val);
-        dummy = dummy.next;
+    //// No extra space method ////
+    // Iterate ll with fast and slow pointers
+    let slow = head, fast = head.next;
+    while (fast && fast.next) {
+        slow = slow.next;
+        fast = fast.next.next;
     }
-    // Iterate ll again, change vals using a deque
-    let i = 0;
+    let temp = slow.next;
+    slow.next = null;
+    slow = temp;
+    // Reverse second half of ll
+    let prev = null;
+    while (slow) {
+        temp = slow.next;
+        slow.next = prev;
+        prev = slow;
+        slow = temp;
+    }
+    // Merge halves by alternating nodes
     while (head) {
-        head.val = i % 2 === 0? arr.shift(): arr.pop();
-        i++;
+        temp = head.next;
+        head.next = prev;
+        prev = temp;
         head = head.next;
     }
 };
