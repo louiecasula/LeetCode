@@ -10,7 +10,6 @@ var firstMissingPositive = function(nums) {
             nums[i] = nums.length + 1;
         }
     }
-    console.log(nums);
     // Iterate again, mark the num at the index of the current num as negative
     for (let i = 0; i < nums.length; i++) { 
         let num = Math.abs(nums[i]);
@@ -22,7 +21,6 @@ var firstMissingPositive = function(nums) {
             nums[num] *= -1;
         } 
     }
-    console.log(nums);
     // Iterate again again, if a num is positive, return it
     for (let i = 0; i < nums.length; i++) {
         if (nums[i] >= 0) {
