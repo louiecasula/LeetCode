@@ -7,8 +7,6 @@ var countSubarrays = function(nums, k) {
     //// Sliding Window Approach ////
     // Keep an output variable, max value, max count, left and right pointers
     let out = 0, max = Math.max(...nums), max_count = 0, l = 0, r = 0;
-    // Calculate total number of subarrays
-    let total = (nums.length * (nums.length + 1)) / 2;
     // Iterate until right reaches the end of array
     while (r < nums.length) {
         if (nums[r] == max) { max_count++; }
@@ -22,5 +20,5 @@ var countSubarrays = function(nums, k) {
         r++;
     }
     // Return total - output
-    return total - out;
+    return ((nums.length * (nums.length + 1)) / 2) - out;
 };
