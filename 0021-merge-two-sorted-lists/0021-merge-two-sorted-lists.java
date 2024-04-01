@@ -23,7 +23,6 @@ class Solution {
             list2 = list2.next;
         }
         ListNode head = start;
-        System.out.println(head.val);
         // Iterate until the end of both lls
         while (list1 != null || list2 != null) {
             // If list2's val comes before list1's val, current node's next is list2's val
