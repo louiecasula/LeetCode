@@ -8,7 +8,8 @@ var findTheDifference = function(s, t) {
     s = s.split("").sort();
     t = t.split("").sort();
     // Iterate, if t's element doesn't equal s', return it
-    for (let i = 0; i < t.length; i++) {
+    for (let i = 0; i < s.length; i++) {
         if (s[i] !== t[i]) { return t[i]; }
     }
+    return t.pop();
 };
