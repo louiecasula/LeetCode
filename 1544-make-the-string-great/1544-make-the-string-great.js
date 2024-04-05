@@ -3,7 +3,6 @@
  * @return {string}
  */
 var makeGood = function(s) {
-    let out = null;
     // Function that recursively makes string "good"
     var recursion = function(st) {
         // Keep an output string and a flag that changes if string is altered
@@ -22,12 +21,11 @@ var makeGood = function(s) {
         }
         // If flag is false, call with resulting string, else return string
         if (flag === true) {
-            out = currString;
+            return currString;
         } else {
-            recursion(currString);
+            return recursion(currString);
         }
     }
     // Return recursive function's output
-    recursion(s);
-    return out;
+    return recursion(s);
 };
