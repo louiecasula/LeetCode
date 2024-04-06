@@ -3,33 +3,23 @@
  * @return {string}
  */
 var minRemoveToMakeValid = function(s) {
-    // Keep an output string and a stack
-    let out = "", stack = [];
-    // Iterate forwards
-    for (let i = 0; i < s.length; i++) {
-        // If thesis and top of stack isn't paren, continue
-        if (s[i] === ")" && stack.pop() !== "(") { 
-            continue;
-        } 
-        // If element is paren, add to stack
-        if (s[i] === "(") { 
-            stack.push(s[i]);
-        }
-        // Append paren or character to output string
-        out += s[i];
+    // Keep an output string and paren and thesis counters
+    let out = "", paren = 0, thesis = 0;
+    // Iterate, count theses
+    for (let c of s) {
+        if (c === ")") { thesis++; }
     }
-    // Iterate backwards
-    s = "", stack = [];
-    for (let i = out.length - 1; i >= 0; i--) {
-        // Same logic but excluding extra parens
-        if (out[i] === "(" && stack.pop() !== ")") { 
-            continue;
-        }
-        if (out[i] === ")") { 
-            stack.push(out[i]);
-        }
-        s += out[i];
+    // Iterate again, count paren and add element to output if counts aren't equal
+    for (let c of s) {
+        if (c === "(") {
+            if (paren === thesis) { continue; }
+            paren++;
+        } else if (c === ")") {
+            thesis--;
+            if (paren === 0) { continue; }
+            paren--;
+        } out += c;
     }
     // Return output string
-    return s.split("").reverse().join("");
+    return out;
 };
