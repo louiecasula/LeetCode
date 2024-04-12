@@ -12,13 +12,11 @@ class Solution:
             # Move the pointer that had the lesser max
             if rmax < lmax:
                 r -= 1
-                sum = rmax - height[r]
-                out += sum if sum > 0 else 0
                 rmax = max(rmax, height[r])
+                out += rmax - height[r]
             else:
                 l += 1
-                sum = lmax - height[l]
-                out += sum if sum > 0 else 0
                 lmax = max(lmax, height[l])
+                out += lmax - height[l]
         # Return output
         return out
