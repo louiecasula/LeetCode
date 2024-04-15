@@ -6,16 +6,17 @@
 #         self.right = right
 class Solution:
     def sumNumbers(self, root: Optional[TreeNode]) -> int:
-        # Keep a list of root-to-leaf numbers
-        rtl = []
-        # DFS function that adds each root-to-leaf number to a list
-        def dfs(root, numString):
-            if root.left:
-                dfs(root.left, numString + str(root.left.val))
-            if root.right:
-                dfs(root.right, numString + str(root.right.val))
+        # DFS function that adds each root-to-leaf number to eachother
+        def dfs(root, curr):
+            # Base case: root is null
+            if not root:
+                return 0
+            # Update current number with new node value
+            curr = curr * 10 + root.val
+            # Return number once a leaf node is reached
             if not root.left and not root.right:
-                rtl.append(int(numString))
-        
-        dfs(root, str(root.val))
-        return sum(rtl)
+                return curr
+            # Recursively call dfs with updated number
+            return dfs(root.left, curr) + dfs(root.right, curr)
+        # Return result of dfs
+        return dfs(root, 0)
