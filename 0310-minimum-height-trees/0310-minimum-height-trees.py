@@ -10,7 +10,7 @@ class Solution:
             adj[node2].append(node1)
         # Keep an edge count dict and a leaf node stack
         edge_count = {}
-        leaves = []
+        leaves = deque()
         for nd, neighbors in adj.items():
             if len(neighbors) == 1:
                 leaves.append(nd)
@@ -19,10 +19,10 @@ class Solution:
         while leaves:
             # If there are 2 or less nodes left, return them
             if n <= 2:
-                return leaves
+                return list(leaves)
             # Shift leaf node array, decrement n, update its neighbors' edge counts, add any new leaf nodes
             for i in range(len(leaves)):
-                node = leaves.pop(0)
+                node = leaves.popleft()
                 n -= 1
                 for nei in adj[node]:
                     edge_count[nei] -= 1
