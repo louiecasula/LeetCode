@@ -1,7 +1,8 @@
 class Solution:
     def countHighestScoreNodes(self, parents: List[int]) -> int:
-        # Keep an output array that contains the max score and n nodes w max score
-        out = [0, 1]
+        # Keep a max score and output variable
+        max_score = 0
+        out = 0
         # Keep an array of nodes and number of children
         n = len(parents)
         nodes = [[0, 0] for _ in parents]
@@ -33,10 +34,10 @@ class Solution:
             l, r = max(node[0], 1), max(node[1], 1)
             p = max(n - (node[0] + node[1]) - 1, 1)
             score =  l * r * p
-            if score == out[0]:
-                out[1] += 1
-            if score > out[0]:
-                out[0] = score
-                out[1] = 1
+            if score == max_score:
+                out += 1
+            if score > max_score:
+                max_score = score
+                out = 1
         # Return output's n value
-        return out[1]
+        return out
