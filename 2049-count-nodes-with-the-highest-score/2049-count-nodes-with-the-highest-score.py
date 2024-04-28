@@ -5,7 +5,7 @@ class Solution:
         out = 0
         # Keep an array of nodes and number of children
         n = len(parents)
-        nodes = [[0, 0] for _ in parents]
+        nodes = [[0, 0] for _ in range(n)]
         # Map parents as edges in a graph
         graph = defaultdict(list)
         for i in range(n):
