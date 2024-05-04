@@ -9,14 +9,15 @@ class Solution:
         # Keep a list of good nodes
         good = 0
         # DFS function to find good nodes
-        def DFS(node, path):
+        def DFS(node, max_val):
             nonlocal good
-            if node.val >= max(path):
+            if node.val >= max_val:
                 good += 1
+            max_val = max(max_val, node.val)
             if node.left:
-                DFS(node.left, path + [node.left.val])
+                DFS(node.left, max_val)
             if node.right:
-                DFS(node.right, path + [node.right.val])
+                DFS(node.right, max_val)
         # Run DFS function and return length of good node list
-        DFS(root, [root.val])
+        DFS(root, root.val)
         return good
