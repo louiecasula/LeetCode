@@ -9,16 +9,17 @@ class Solution:
             score_map[score[i]] = i
         # Sort scores in ascending order
         score.sort(reverse=True)
-        # Iterate ascending scores,
+        # Iterate ascending scores in score map,
         for i in range(n):
             # Set first through third as medal ranking strings, the rest are i + 1
+            ind = score_map[score[i]]
             if i == 0:
-                out[score_map[score[i]]] = "Gold Medal"
+                out[ind] = "Gold Medal"
             elif i == 1:
-                out[score_map[score[i]]] = "Silver Medal"
+                out[ind] = "Silver Medal"
             elif i == 2:
-                out[score_map[score[i]]] = "Bronze Medal"
+                out[ind] = "Bronze Medal"
             else:
-                out[score_map[score[i]]] = str(i + 1)
+                out[ind] = str(i + 1)
         # Return score
         return out
