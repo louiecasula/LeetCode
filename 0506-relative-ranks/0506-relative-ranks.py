@@ -1,18 +1,19 @@
 class Solution:
     def findRelativeRanks(self, score: List[int]) -> List[str]:
-        # Make a copy of score and sort scores in ascending order
-        asc = sorted(score, reverse=True)
+        # Make a copy of score and sort scores
+        desc = sorted(score)
+        n = len(desc)
         # Iterate ascending scores,
-        for i in range(len(asc)):
+        for i in range(len(desc)):
             # Set first through third as medal ranking strings, the rest are i + 1
-            curr = score.index(asc[i])
-            if i == 0:
+            curr = score.index(desc[i])
+            if i == n - 1:
                 score[curr] = "Gold Medal"
-            elif i == 1:
+            elif i == n - 2:
                 score[curr] = "Silver Medal"
-            elif i == 2:
+            elif i == n - 3:
                 score[curr] = "Bronze Medal"
             else:
-                score[curr] = str(i + 1)
+                score[curr] = str(n - i)
         # Return score
         return score
