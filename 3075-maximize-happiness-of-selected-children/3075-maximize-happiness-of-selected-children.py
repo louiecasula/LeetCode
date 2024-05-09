@@ -2,11 +2,10 @@ class Solution:
     def maximumHappinessSum(self, happiness: List[int], k: int) -> int:
         # Keep an output counter
         out = 0
-        # Sort happiness in ascending order
-        happiness.sort()
-        # Iterate to k, add the popped value - i to output
+        # Sort happiness in descending order
+        happiness.sort(reverse=True)
+        # Iterate to k, add the first value - i to output
         for i in range(k):
-            curr = happiness.pop()
-            out += max(0, curr - i)
+            out += max(0, happiness[i] - i)
         # Return output
         return out
