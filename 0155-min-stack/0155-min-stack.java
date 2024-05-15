@@ -1,32 +1,38 @@
 class MinStack {
 
-    Stack<Integer> stack;
-    TreeMap<Integer, Integer> treeMap;
+    List<int[]> stackArray;
 
     public MinStack() {
-        stack = new Stack();
-        treeMap = new TreeMap();
+        stackArray = new ArrayList<>();
     }
     
     public void push(int val) {
-        Integer iVal = Integer.valueOf(val);
-        stack.push(iVal);
-        if (treeMap.containsKey(iVal)) { treeMap.put(iVal, treeMap.get(iVal) + 1); }
-        else { treeMap.put(iVal, 1); }
+        if (stackArray.size() == 0) { 
+            stackArray.add(new int[] { val, val });
+            return;
+        }
+        int[] top = stackArray.get(stackArray.size() - 1);
+        // Save min val reached so far at each element in arraylist
+        if (top[1] > val) {
+            stackArray.add(new int[] { val, val });
+        } else {
+            stackArray.add(new int[] { val, top[1] });
+        }
     }
     
     public void pop() {
-        Integer val = stack.pop();
-        if (treeMap.get(val) == 1) { treeMap.remove(val); }
-        else { treeMap.put(val, treeMap.get(val) - 1); }
+        if (stackArray.size() == 0) { return; }
+        stackArray.remove(stackArray.size() - 1);
     }
     
     public int top() {
-        return stack.peek();
+        if (stackArray.size() == 0) { return -1; }
+        return stackArray.get(stackArray.size() - 1)[0];
     }
     
     public int getMin() {
-        return treeMap.firstKey();
+        if (stackArray.size() == 0) { return -1; }
+        return stackArray.get(stackArray.size() - 1)[1];
     }
 }
 
