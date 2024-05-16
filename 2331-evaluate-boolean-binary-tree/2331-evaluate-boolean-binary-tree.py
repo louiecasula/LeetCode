@@ -7,10 +7,8 @@
 class Solution:
     def evaluateTree(self, root: Optional[TreeNode]) -> bool:
         # Post-order DFS function
-        if root:
-            if root.val == 2:
-                return self.evaluateTree(root.left) or self.evaluateTree(root.right)
-            elif root.val == 3:
-                return self.evaluateTree(root.left) and self.evaluateTree(root.right)
-            else:
-                return root.val
+        if not root.left and not root.right:
+            return root.val
+        if root.val == 2:
+            return self.evaluateTree(root.left) or self.evaluateTree(root.right)
+        return self.evaluateTree(root.left) and self.evaluateTree(root.right)
