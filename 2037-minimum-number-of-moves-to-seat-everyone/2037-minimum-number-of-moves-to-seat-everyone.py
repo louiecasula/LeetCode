@@ -1,8 +1,8 @@
 class Solution:
     def minMovesToSeat(self, seats: List[int], students: List[int]) -> int:
         # Sort both arrays
-        seats.sort()
-        students.sort()
+        seats = sorted(seats)
+        students = sorted(students)
         # Keep an output variable
         out = 0
         # Iterate arrays, add absolute difference between ith value to output
