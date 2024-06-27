@@ -2,7 +2,9 @@ class Solution:
     def findCenter(self, edges: List[List[int]]) -> int:
         nodes = []
         for e in edges:
-            for n in e:
-                if n in nodes:
-                    return n
-                nodes.append(n)
+            if e[0] in nodes:
+                return e[0]
+            nodes.append(e[0])
+            if e[1] in nodes:
+                return e[1]
+            nodes.append(e[1])
