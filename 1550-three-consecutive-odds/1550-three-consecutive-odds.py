@@ -1,11 +1,6 @@
 class Solution:
     def threeConsecutiveOdds(self, arr: List[int]) -> bool:
-        oddCount = 0
-        for a in arr:
-            if a % 2 == 1:
-                if oddCount == 2:
-                    return 1
-                oddCount += 1
-            else:
-                oddCount = 0
-        return 0
+        for i in range(1, len(arr) - 1):
+            if arr[i - 1] % 2 + arr[i] % 2 + arr[i + 1] % 2 == 3:
+                return True
+        return False
