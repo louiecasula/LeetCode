@@ -20,7 +20,6 @@ class Solution:
             head = head.next
         # Edgecase: Return [-1, -1] if array is less than two vals
         N = len(crit)
-        print(crit)
         if N < 2:
             return [-1, -1]
         # Iterate array,
