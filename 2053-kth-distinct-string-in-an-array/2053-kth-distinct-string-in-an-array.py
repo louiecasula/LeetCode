@@ -4,7 +4,10 @@ class Solution:
         freq = defaultdict(int)
         for a in arr:
             freq[a] += 1
-        # Make a list of all elements with only one appearance
-        dist = [x[0] for x in freq.items() if x[1] == 1]
-        # Return kth element if possible, else empty string
-        return dist[k - 1] if len(dist) >= k else ""
+        # Return kth key whose val is 1, else empty string
+        for key in freq.keys():
+            if freq[key] == 1:
+                k -= 1
+            if k == 0:
+                return key
+        return ""
