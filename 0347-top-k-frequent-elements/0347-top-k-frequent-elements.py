@@ -1,10 +1,13 @@
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        # Map frequency of all elements in nums
+        ## Frequency map
+        # Map each element by its frequency
         freq = defaultdict(int)
         for num in nums:
             freq[num] += 1
-        # Sort frequency map by values in descending order
-        sort = {k: v for k, v in sorted(freq.items(), key=lambda item: item[1], reverse=True)}
-        # Return slice of frequency map keys up to k
-        return list(sort.keys())[:k]
+        # Add each value & key in a tuple
+        tupList = [(val, key) for key, val in freq.items()]
+        # Sort tuple list
+        tupList.sort(reverse=True)
+        # Return k keys from tuple list
+        return [x[1] for x in tupList[0:k]]
