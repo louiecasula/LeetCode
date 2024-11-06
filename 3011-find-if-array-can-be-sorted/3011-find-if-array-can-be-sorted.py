@@ -1,9 +1,7 @@
 class Solution:
     def canSortArray(self, nums: List[int]) -> bool:
-        # Convert each num into binary
-        binStrings = ["{0:b}".format(x) for x in nums]
-        # Convert each binString into its sum of set bits
-        setBits = [x.count("1") for x in binStrings]
+        # Get the sum of setBits for each num
+        setBits = [x.bit_count() for x in nums]
         # Keep a list of sequence of same set bits in nums
         seq = [[nums[0]]]
         # Iterate nums,
